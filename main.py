@@ -152,7 +152,7 @@ def main():
                 clouds.append(Cloud())
 
             # Обновление вражеских самолетов
-            for enemy in enemies:
+            for enemy in enemies[:]:
                 enemy.move()
                 if enemy.off_screen():
                     enemies.remove(enemy)
@@ -162,6 +162,7 @@ def main():
                         enemies.remove(enemy)
                         cannons.remove(cannon)
                         score += 1
+                        explosions.append(Explosion(enemy.x, enemy.y))  # Создание взрыва при попадании
 
             # Обновление пушек
             for cannon in cannons:
@@ -210,3 +211,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
